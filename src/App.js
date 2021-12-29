@@ -8,26 +8,50 @@ export default function App() {
   console.log(inputArr);
   return (
     <div className="todo">
-      <input onChange={(e) => setInputText(e.target.value)} />
-      <Button
-        variant="contained"
-        onClick={() => setInputArr([...inputArr, inputText])}
-      >
-        Add to List
-      </Button>
-
+      <div className="todochild">
+        <input
+          onChange={(e) => setInputText(e.target.value)}
+          value={inputText}
+        />
+        <Button
+          variant="contained"
+          onClick={() => {
+            setInputArr([...inputArr, inputText]);
+            handleSubmit();
+          }}
+        >
+          Add to List
+        </Button>
+      </div>
       {inputArr.map((clr) => (
         <AddColor clr={clr} />
       ))}
     </div>
   );
+
+  function handleSubmit() {
+    // clearing the values
+    console.log("handle");
+    setInputText("");
+  }
+
   function AddColor({ clr }) {
     // console.log("func", clr);
     return (
       <div className="list">
         {clr}
         <div className="btn">
-          <Button variant="contained" color="error">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => {
+              const remaingArr = inputArr.filter((input) => {
+                return clr !== input;
+              });
+              setInputArr(remaingArr);
+              handleSubmit();
+            }}
+          >
             remove
           </Button>
         </div>
