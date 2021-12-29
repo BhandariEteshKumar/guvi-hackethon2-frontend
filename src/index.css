@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: blue;
+  margin: 2rem;
 }
 
 code {
@@ -13,33 +13,35 @@ code {
     monospace;
 }
 
-.card {
-  background-color: white;
-  display: inline-block;
-  margin: 2rem;
-  padding: 2rem;
-  border-radius: 2rem;
-  margin-left: 6rem;
+.todo {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
   text-align: center;
 }
-.main {
-  display: inline-block;
-  transition: 0.2s;
-}
 
-.main :hover {
-  transform: scale(1.1);
+.list {
+  background-color: whitesmoke;
+  margin: 2rem;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+  color: black;
+  display: flex;
 }
-
-.planshead {
-  color: gray;
-}
-
-h6 {
+input {
   margin: 0;
-  padding: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
 }
 
-.content {
-  text-align: left;
+.btn {
+  margin-left: auto;
 }
