@@ -5,43 +5,130 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 2rem;
+  background: whitesmoke;
 }
+
+/* body::-webkit-scrollbar-track {
+  background: #4e73df;
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-.todo {
-  background-color: #f44336;
-  padding: 30px 40px;
+.root {
+  margin-left: 10rem;
+  padding: 2rem;
+}
+.data {
+  margin-left: 10rem;
+  padding: 2rem;
+}
+
+.logo {
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  margin-top: 0;
+  transform: rotate(0deg);
+  transition: transform ease-in 1s;
+}
+
+.logo:hover {
+  transform: rotate(360deg);
+}
+
+.navbar {
+  scrollbar-width: 0;
+  position: fixed;
+  background-color: #4e73df;
+  transition: width 600ms ease;
+  overflow: scroll;
+  height: 100vh;
+  width: 10rem;
   color: white;
-  text-align: center;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.list {
-  background-color: whitesmoke;
-  margin-top: 1.8rem;
-  border: none;
-  border-radius: 0;
-  width: 100%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
-  color: black;
-  display: flex;
+li {
+  margin-top: 3rem;
+  cursor: pointer;
 }
-input {
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 75%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
-.btn {
+.nav-item {
+  width: 100%;
+}
+
+.nav-item:last-child {
+  margin-top: auto;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  filter: grayscale(100%) opacity(0.7);
+  transition: var(--transition-speed);
+}
+
+.data {
+  /* display: flex; */
+  gap: 3rem;
+}
+
+table {
+  background-color: lightgrey;
+  border-radius: 0.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 2rem;
+  height: fit-content;
+  width: fit-content !important;
+  margin-right: 0px;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+th,
+td,
+tr {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+thead th:first-child {
+  border-bottom: 1px solid black !important;
+}
+
+.dis {
+  display: inline-block;
+}
+
+.upbar {
+  margin-left: 5rem;
+  display: flex;
+  background: white;
+  height: 5rem;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+  align-items: center;
+}
+img {
+  height: 2rem;
+  width: 2rem;
+  margin-left: auto;
+}
+span {
   margin-left: auto;
 }
