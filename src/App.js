@@ -73,7 +73,10 @@ export default function App() {
       </div>
       <div className="upbar">
         <span>Admin Panel</span>
-        <img src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_profile.svg" />
+        <img
+          src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_profile.svg"
+          alt="admin"
+        />
       </div>
       <div className="data">
         {flag === "all" ? (
