@@ -32,18 +32,22 @@ export default function UserTable({ users, setUsers, add }) {
               <td>{user.age}</td>
               <td>{user.email}</td>
               <td>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => {
-                    let data = users.filter((user, index) => {
-                      return index1 !== index;
-                    });
-                    setUsers(data);
-                  }}
-                >
-                  Remove
-                </Button>
+                {add ? (
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => {
+                      let data = users.filter((user, index) => {
+                        return index1 !== index;
+                      });
+                      setUsers(data);
+                    }}
+                  >
+                    Remove
+                  </Button>
+                ) : (
+                  ""
+                )}
               </td>
             </tr>
           ))}

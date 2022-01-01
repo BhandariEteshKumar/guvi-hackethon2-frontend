@@ -32,18 +32,22 @@ export default function ProductTable({ products, add, setProducts }) {
               <td>{product.material}</td>
               <td>{product.type}</td>
               <td>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => {
-                    let data = products.filter((product, index) => {
-                      return index1 !== index;
-                    });
-                    setProducts(data);
-                  }}
-                >
-                  Remove
-                </Button>
+                {add ? (
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => {
+                      let data = products.filter((product, index) => {
+                        return index1 !== index;
+                      });
+                      setProducts(data);
+                    }}
+                  >
+                    Remove
+                  </Button>
+                ) : (
+                  ""
+                )}
               </td>
             </tr>
           ))}
