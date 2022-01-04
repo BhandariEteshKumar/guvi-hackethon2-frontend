@@ -45,8 +45,6 @@ export default function UserTable() {
                 >
                   Edit
                 </Button>
-              </td>
-              <td>
                 <Button
                   variant="contained"
                   color="error"
