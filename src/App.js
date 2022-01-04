@@ -7,7 +7,8 @@ import UserTable from "./UserTable";
 import AddUser from "./AddUser";
 import Profile from "./Profile";
 import EditUser from "./EditUser";
-
+import { createContext } from "react";
+const MovieContext = createContext();
 export default function App() {
   const [users, setUsers] = useState([
     {
@@ -44,23 +45,28 @@ export default function App() {
           <Link to="/create-user">Add User</Link>
         </Toolbar>
       </AppBar>
-      <Switch>
-        <Route path="/create-user">
-          <AddUser users={users} setUsers={setUsers} />
-        </Route>
-        <Route path="/edit-user/:id">
-          <EditUser users={users} setUsers={setUsers} />
-        </Route>
-        <Route path="/edit-profile/:id">
-          <EditUser users={users} setUsers={setUsers} />
-        </Route>
-        <Route path="/profile/:id">
-          <Profile users={users} setUsers={setUsers} />
-        </Route>
-        <Route path="/">
-          <UserTable users={users} setUsers={setUsers} />
-        </Route>
-      </Switch>
+      <h1>Using Context API</h1>
+      <MovieContext.Provider value={[users, setUsers]}>
+        <Switch>
+          <Route path="/create-user">
+            <AddUser />
+          </Route>
+          <Route path="/edit-user/:id">
+            <EditUser />
+          </Route>
+          <Route path="/edit-profile/:id">
+            <EditUser />
+          </Route>
+          <Route path="/profile/:id">
+            <Profile />
+          </Route>
+          <Route path="/">
+            <UserTable />
+          </Route>
+        </Switch>
+      </MovieContext.Provider>
     </div>
   );
 }
+
+export { MovieContext };

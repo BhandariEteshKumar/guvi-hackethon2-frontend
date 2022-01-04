@@ -1,11 +1,12 @@
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import InfoIcon from "@mui/icons-material/Info";
+import { MovieContext } from "./App";
+import { useContext } from "react";
 
-let id = "";
-export default function UserTable({ users, setUsers }) {
+export default function UserTable() {
   const history = useHistory();
-
+  const [users, setUsers] = useContext(MovieContext);
   return (
     <div className="dis">
       <table>
@@ -31,7 +32,6 @@ export default function UserTable({ users, setUsers }) {
                   id="btn"
                   onClick={() => {
                     history.push(`/profile/${index1}`);
-                    id = index1;
                   }}
                 >
                   <InfoIcon color="success" />
@@ -67,5 +67,3 @@ export default function UserTable({ users, setUsers }) {
     </div>
   );
 }
-
-export { id };

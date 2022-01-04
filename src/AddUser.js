@@ -1,9 +1,11 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TextField } from "@mui/material";
+import { MovieContext } from "./App";
 
-export default function AddUser({ users, setUsers }) {
+export default function AddUser() {
+  const [users, setUsers] = useContext(MovieContext);
   const [name, setName] = useState(null);
   const [password, setPassword] = useState(null);
   const [age, setAge] = useState(null);

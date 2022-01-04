@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import { MovieContext } from "./App";
+import { useContext } from "react";
 
-export default function Profile({ users }) {
+export default function Profile() {
+  const [users] = useContext(MovieContext);
   const { id } = useParams();
   const history = useHistory();
   return (

@@ -2,7 +2,11 @@ import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TextField } from "@mui/material";
 import { useParams } from "react-router-dom";
-export default function EditUser({ users, setUsers }) {
+import { MovieContext } from "./App";
+import { useContext } from "react";
+
+export default function EditUser() {
+  const [users, setUsers] = useContext(MovieContext);
   const { id } = useParams();
   const history = useHistory();
   const example = {};
