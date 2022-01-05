@@ -11,6 +11,7 @@ export default function AddUser() {
   const [age, setAge] = useState(null);
   const [email, setEmail] = useState(null);
   const example = {};
+  example.id = users.length + 1;
   example.name = name;
   example.password = password;
   example.age = age;
@@ -62,7 +63,21 @@ export default function AddUser() {
         <Button
           variant="outlined"
           onClick={() => {
-            setUsers([...users, example]);
+            // setUsers([...users, example]);
+            fetch(`https://61c412bff1af4a0017d99279.mockapi.io/users`, {
+              method: "POST",
+              body: JSON.stringify(example),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+              .then((data) => data.json())
+              .then(() => {
+                fetch("https://61c412bff1af4a0017d99279.mockapi.io/users")
+                  .then((data) => data.json())
+                  .then((users) => setUsers(users));
+                history.push("/");
+              });
             history.push("/");
           }}
         >

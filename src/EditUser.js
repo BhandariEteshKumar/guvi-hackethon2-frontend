@@ -9,12 +9,12 @@ export default function EditUser() {
   const [users, setUsers] = useContext(MovieContext);
   const { id } = useParams();
   const history = useHistory();
-  const example = {};
-  example.name = users[id].name;
-  example.password = users[id].password;
-  example.age = users[id].age;
-  example.email = users[id].email;
-  console.log(typeof age);
+  const example = users[id - 1];
+  // example.name = users[id].name;
+  // example.password = users[id].password;
+  // example.age = users[id].age;
+  // example.email = users[id].email;
+  console.log(id, users[id - 1], example);
   return (
     <form>
       <div className="row">
@@ -61,12 +61,20 @@ export default function EditUser() {
         <Button
           variant="outlined"
           onClick={() => {
-            let data = users.map((user, index) => {
-              if (index !== +id) return user;
-              return example;
-            });
-            setUsers(data);
-            history.push("/");
+            fetch(`https://61c412bff1af4a0017d99279.mockapi.io/users/${id}`, {
+              method: "PUT",
+              body: JSON.stringify(example),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+              .then((data) => data.json())
+              .then(() => {
+                fetch("https://61c412bff1af4a0017d99279.mockapi.io/users")
+                  .then((data) => data.json())
+                  .then((users) => setUsers(users));
+                history.push("/");
+              });
           }}
         >
           Create

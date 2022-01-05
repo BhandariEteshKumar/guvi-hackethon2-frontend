@@ -84,3 +84,7 @@ img {
 button {
   margin-left: 0.5rem !important;
 }
+
+input {
+  padding: 2rem;
+}

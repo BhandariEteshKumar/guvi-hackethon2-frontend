@@ -21,7 +21,7 @@ export default function UserTable() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index1) => (
+          {users.map((user) => (
             <tr>
               <td>{user.name}</td>
               <td>{user.password}</td>
@@ -31,7 +31,7 @@ export default function UserTable() {
                 <button
                   id="btn"
                   onClick={() => {
-                    history.push(`/profile/${index1}`);
+                    history.push(`/profile/${user.id}`);
                   }}
                 >
                   <InfoIcon color="success" />
@@ -40,7 +40,7 @@ export default function UserTable() {
                   variant="contained"
                   color="secondary"
                   onClick={() => {
-                    history.push(`/edit-user/${index1}`);
+                    history.push(`/edit-user/${user.id}`);
                   }}
                 >
                   Edit
@@ -49,10 +49,24 @@ export default function UserTable() {
                   variant="contained"
                   color="error"
                   onClick={() => {
-                    let data = users.filter((user, index) => {
-                      return index1 !== index;
-                    });
-                    setUsers(data);
+                    // let data = users.filter((user, index) => {
+                    //   return user.id !== index;
+                    // });
+                    // setUsers(data);
+                    fetch(
+                      `https://61c412bff1af4a0017d99279.mockapi.io/users/${user.id}`,
+                      {
+                        method: `DELETE`,
+                      }
+                    )
+                      .then((data) => data.json())
+                      .then((users) => {
+                        fetch(
+                          "https://61c412bff1af4a0017d99279.mockapi.io/users"
+                        )
+                          .then((data) => data.json())
+                          .then((users) => setUsers(users));
+                      });
                   }}
                 >
                   Remove

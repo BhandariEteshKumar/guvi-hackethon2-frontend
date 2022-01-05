@@ -8,34 +8,15 @@ import AddUser from "./AddUser";
 import Profile from "./Profile";
 import EditUser from "./EditUser";
 import { createContext } from "react";
+import { useEffect } from "react";
 const MovieContext = createContext();
 export default function App() {
-  const [users, setUsers] = useState([
-    {
-      name: "user1",
-      password: "user1",
-      age: "21",
-      email: "user1@gmail.com",
-    },
-    {
-      name: "user2",
-      password: "user2",
-      age: "24",
-      email: "user2@gmail.com",
-    },
-    {
-      name: "user3",
-      password: "user3",
-      age: "23",
-      email: "user3@gmail.com",
-    },
-    {
-      name: "user4",
-      password: "user4",
-      age: "24",
-      email: "user4@gmail.com",
-    },
-  ]);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("https://61c412bff1af4a0017d99279.mockapi.io/users")
+      .then((data) => data.json())
+      .then((users) => setUsers(users));
+  }, []);
 
   return (
     <div className="app">
@@ -45,7 +26,7 @@ export default function App() {
           <Link to="/create-user">Add User</Link>
         </Toolbar>
       </AppBar>
-      <h1>Using Context API</h1>
+      <h1>Using Aximos-useEffect() and fetch</h1>
       <MovieContext.Provider value={[users, setUsers]}>
         <Switch>
           <Route path="/create-user">
