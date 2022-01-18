@@ -8,18 +8,20 @@ export default function AddUser() {
   const [users, setUsers] = useContext(MovieContext);
   const [name, setName] = useState(null);
   const [password, setPassword] = useState(null);
-  const [age, setAge] = useState(null);
+  const [phone, setPhone] = useState(null);
   const [email, setEmail] = useState(null);
-  const example = {};
-  example.id = users.length + 1;
-  example.name = name;
-  example.password = password;
-  example.age = age;
-  example.email = email;
+  const example = {
+    id: users.length + 1,
+    name: name,
+    password: password,
+    phone: phone,
+    email: email,
+  };
+
   const history = useHistory();
   return (
     <form>
-      <div className="row">
+      <div className="adduser row">
         <TextField
           label="UserName"
           variant="standard"
@@ -46,7 +48,7 @@ export default function AddUser() {
           type="text"
           id="Age"
           className="col"
-          onInput={(e) => setAge(e.target.value)}
+          onInput={(e) => setPhone(e.target.value)}
         />
       </div>
       <div className="row">
@@ -63,19 +65,20 @@ export default function AddUser() {
         <Button
           variant="outlined"
           onClick={() => {
-            // setUsers([...users, example]);
-            fetch(`https://61c412bff1af4a0017d99279.mockapi.io/users`, {
+            fetch("http://localhost:9004/signup", {
               method: "POST",
-              body: JSON.stringify(example),
+              body: JSON.stringify({
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+              }),
               headers: {
                 "Content-type": "application/json; charset=UTF-8",
               },
             })
               .then((data) => data.json())
               .then(() => {
-                fetch("https://61c412bff1af4a0017d99279.mockapi.io/users")
-                  .then((data) => data.json())
-                  .then((users) => setUsers(users));
                 history.push("/");
               });
             history.push("/");

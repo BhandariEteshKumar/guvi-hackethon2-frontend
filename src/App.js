@@ -5,49 +5,73 @@ import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import UserTable from "./UserTable";
 import AddUser from "./AddUser";
-import Profile from "./Profile";
 import EditUser from "./EditUser";
 import { createContext } from "react";
 import { useEffect } from "react";
+import Login from "./Login";
+import BookTickets from "./BookTickets";
+import Seats from "./Seats";
+import AddTheater from "./AddTheater";
 const MovieContext = createContext();
+const TheaterContext = createContext();
 export default function App() {
-  const [users, setUsers] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [theaters, setTheaters] = useState([]);
   useEffect(() => {
-    fetch("https://61c412bff1af4a0017d99279.mockapi.io/users")
+    fetch("https://guvi-hackethon2.herokuapp.com/home")
       .then((data) => data.json())
-      .then((users) => setUsers(users));
+      .then((movies) => {
+        setMovies(movies);
+      });
+    fetch("https://guvi-hackethon2.herokuapp.com/theaters")
+      .then((data) => data.json())
+      .then((theaters) => {
+        setTheaters(theaters);
+      });
   }, []);
+  console.log(movies);
 
   return (
     <div className="app">
       <AppBar position="static" sx={{ backgroundColor: "#203040" }}>
         <Toolbar>
-          <Link to="/">Home</Link>
-          <Link to="/create-user">Add User</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/create-movie">Add Movie</Link>
         </Toolbar>
       </AppBar>
-      <h1>Using Aximos-useEffect() and fetch</h1>
-      <MovieContext.Provider value={[users, setUsers]}>
-        <Switch>
-          <Route path="/create-user">
-            <AddUser />
-          </Route>
-          <Route path="/edit-user/:id">
-            <EditUser />
-          </Route>
-          <Route path="/edit-profile/:id">
-            <EditUser />
-          </Route>
-          <Route path="/profile/:id">
-            <Profile />
-          </Route>
-          <Route path="/">
-            <UserTable />
-          </Route>
-        </Switch>
+
+      <MovieContext.Provider value={[movies, setMovies]}>
+        <TheaterContext.Provider value={[theaters, setTheaters]}>
+          <Switch>
+            <Route path="/create-movie">
+              <AddUser />
+            </Route>
+            <Route path="/theater/:id/:name">
+              <AddTheater />
+            </Route>
+            <Route path="/signup">
+              <AddUser />
+            </Route>
+            <Route path="/movies/create/:id">
+              <BookTickets />
+            </Route>
+            <Route exact path="/movies/:id/seats">
+              <Seats />
+            </Route>
+            <Route path="/home/:name">
+              <UserTable />
+            </Route>
+            <Route path="/home">
+              <UserTable />
+            </Route>
+            <Route path-="/">
+              <Login />
+            </Route>
+          </Switch>
+        </TheaterContext.Provider>
       </MovieContext.Provider>
     </div>
   );
 }
 
-export { MovieContext };
+export { MovieContext, TheaterContext };

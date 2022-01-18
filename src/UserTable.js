@@ -1,81 +1,71 @@
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import InfoIcon from "@mui/icons-material/Info";
 import { MovieContext } from "./App";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 
 export default function UserTable() {
+  const { name } = useParams();
   const history = useHistory();
-  const [users, setUsers] = useContext(MovieContext);
+  const [movies, setMovies] = useContext(MovieContext);
+  console.log(name);
   return (
-    <div className="dis">
-      <table>
-        <thead>
-          <tr>
-            <th>User Name</th>
-            <th>Password</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr>
-              <td>{user.name}</td>
-              <td>{user.password}</td>
-              <td>{user.age}</td>
-              <td>{user.email}</td>
-              <td>
-                <button
-                  id="btn"
-                  onClick={() => {
-                    history.push(`/profile/${user.id}`);
-                  }}
-                >
-                  <InfoIcon color="success" />
-                </button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => {
-                    history.push(`/edit-user/${user.id}`);
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => {
-                    // let data = users.filter((user, index) => {
-                    //   return user.id !== index;
-                    // });
-                    // setUsers(data);
-                    fetch(
-                      `https://61c412bff1af4a0017d99279.mockapi.io/users/${user.id}`,
-                      {
-                        method: `DELETE`,
-                      }
-                    )
-                      .then((data) => data.json())
-                      .then((users) => {
-                        fetch(
-                          "https://61c412bff1af4a0017d99279.mockapi.io/users"
-                        )
-                          .then((data) => data.json())
-                          .then((users) => setUsers(users));
-                      });
-                  }}
-                >
-                  Remove
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div id="movies">
+      {movies.map((movie) => (
+        <div className="main card">
+          <img
+            className="card-img-top"
+            src={movie.poster}
+            alt="Card image cap"
+          ></img>
+          <div className="card-body">
+            <h5 className="card-title">{movie.name}</h5>
+            <p className="card-text">{movie.rating}</p>
+            <p className="card-text">{movie.summary}</p>
+            <Button
+              variant="contained"
+              onClick={() => {
+                history.push(`/movies/create/${movie.id}`);
+              }}
+            >
+              Book Tickets
+            </Button>
+            {name === "admin" ? (
+              <Button
+                variant="contained"
+                onClick={() => {
+                  fetch(`http://localhost:9004/movies/${movie.id}`, {
+                    method: "DELETE",
+                  })
+                    .then((data) => data.json())
+                    .then((movieData) => {
+                      console.log(movieData);
+                      fetch("http://localhost:9004/home")
+                        .then((data) => data.json())
+                        .then((movies) => {
+                          setMovies(movies);
+                        });
+                    });
+                }}
+              >
+                Remove
+              </Button>
+            ) : (
+              ""
+            )}
+            {name === "admin" ? (
+              <Button
+                variant="contained"
+                onClick={() => history.push(`/theater/${movie.id}/${name}`)}
+              >
+                Add Theater
+              </Button>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

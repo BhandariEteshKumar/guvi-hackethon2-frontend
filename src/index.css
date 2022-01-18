@@ -9,7 +9,9 @@ body {
   letter-spacing: 0.01071em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: whitesmoke;
+  background: url("https://img.freepik.com/free-vector/cinema-movie-film-festival-background_1017-23458.jpg?size=626&ext=jpg")
+    no-repeat;
+  background-size: cover;
 }
 
 /* body::-webkit-scrollbar-track {
@@ -42,7 +44,7 @@ th,
 td,
 tr {
   text-align: center;
-  padding: 1rem;
+  padding: 0.1rem;
   letter-spacing: 0.01071em;
 }
 tr {
@@ -87,4 +89,26 @@ button {
 
 input {
   padding: 2rem;
+}
+
+#movies {
+  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.main {
+  width: 32%;
+  opacity: 0.8;
+}
+
+footer {
+  padding: 4rem;
+  display: flex;
+}
+footer button {
+  margin-left: auto !important;
+}
+
+button {
+  margin: 0.5rem !important;
 }
