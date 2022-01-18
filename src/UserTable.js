@@ -13,11 +13,7 @@ export default function UserTable() {
     <div id="movies">
       {movies.map((movie) => (
         <div className="main card">
-          <img
-            className="card-img-top"
-            src={movie.poster}
-            alt="Card image cap"
-          ></img>
+          <img className="card-img-top" src={movie.poster} alt="Poster"></img>
           <div className="card-body">
             <h5 className="card-title">{movie.name}</h5>
             <p className="card-text">{movie.rating}</p>
