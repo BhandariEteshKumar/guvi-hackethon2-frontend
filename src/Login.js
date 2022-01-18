@@ -46,7 +46,7 @@ export default function Login() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                     <label className="form-label" htmlFor="typeEmailX">
-                      Email
+                      UserName
                     </label>
                   </div>
                   <div className="form-outline form-white mb-4">
