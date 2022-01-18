@@ -3,12 +3,13 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TextField } from "@mui/material";
 
+// adding the user to the database
 export default function AddUser() {
   const [name, setName] = useState(null);
   const [password, setPassword] = useState(null);
   const [phone, setPhone] = useState(null);
   const [email, setEmail] = useState(null);
-
+  // history is used for routing
   const history = useHistory();
   return (
     <form>
@@ -56,6 +57,7 @@ export default function AddUser() {
         <Button
           variant="outlined"
           onClick={() => {
+            // posting the user to database
             fetch("http://localhost:9004/signup", {
               method: "POST",
               body: JSON.stringify({

@@ -9,16 +9,15 @@ export default function Seats() {
   const { id } = useParams();
   const [movies] = useContext(MovieContext);
   const [theaters] = useContext(TheaterContext);
+  //seats store the booking data
   let seats = theaters.filter((theater) => +id === theater.movieId);
   seats = seats[0].booked;
+  //total amount is the payment for the tickets
   const [total_amount, setAmout] = useState(0);
   const history = useHistory();
-
-  //   seats = theaters.filter((theater) => +id === theater.movieId);
-  //   seats = seats[0].booked;
+  //when a user selects the seat we select the data
   function handleClick(e, ind) {
     e.preventDefault();
-
     e.target.style.color = seats[ind] === "Booked" ? "green" : "red";
     if (seats[ind] === "Booked") {
       seats[ind] = "Not Booked";
@@ -40,7 +39,9 @@ export default function Seats() {
   console.log(movies, theaters);
   const style2 = { color: "green" };
   const style1 = { color: "red" };
+  // arr is used for indexing
   let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  //creating table component to render the seats
   return (
     <div>
       <table>

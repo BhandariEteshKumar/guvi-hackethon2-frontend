@@ -38,9 +38,10 @@ export default function App() {
           <Link to="/create-movie">Add Movie</Link>
         </Toolbar>
       </AppBar>
-
+      {/* context api for providing data to children */}
       <MovieContext.Provider value={[movies, setMovies]}>
         <TheaterContext.Provider value={[theaters, setTheaters]}>
+          {/* routing between the pages */}
           <Switch>
             <Route path="/create-movie">
               <AddUser />

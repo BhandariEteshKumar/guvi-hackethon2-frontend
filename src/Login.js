@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// login form
 export default function Login() {
   const history = useHistory();
   const [name, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const example = {};
+  // when user clicks submit we verify the data
   let handleClick = () => {
     example.name = name;
     example.password = password;
+    //calling api to check the credentials
     fetch("https://guvi-hackethon2.herokuapp.com/login", {
       method: "POST",
       body: JSON.stringify(example),

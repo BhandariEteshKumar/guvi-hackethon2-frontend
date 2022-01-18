@@ -24,6 +24,7 @@ export default function BookTickets() {
     (theater) => +id === +theater.movieId || +id === +theater.movieid
   );
   console.log(theaters, movie);
+  // dispalying the theaters, show timing for the specific movies
   return (
     <div>
       {!selected ? (

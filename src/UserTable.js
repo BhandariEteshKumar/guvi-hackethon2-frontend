@@ -11,6 +11,7 @@ export default function UserTable() {
   console.log(name);
   return (
     <div id="movies">
+      {/* loading the movies */}
       {movies.map((movie) => (
         <div className="main card">
           <img className="card-img-top" src={movie.poster} alt="Poster"></img>
@@ -26,6 +27,7 @@ export default function UserTable() {
             >
               Book Tickets
             </Button>
+            {/* rendering the components which are only for admin user */}
             {name === "admin" ? (
               <Button
                 variant="contained"
@@ -49,6 +51,7 @@ export default function UserTable() {
             ) : (
               ""
             )}
+            {/* rendering the components which are only for admin user */}
             {name === "admin" ? (
               <Button
                 variant="contained"
