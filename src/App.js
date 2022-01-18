@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import UserTable from "./UserTable";
 import AddUser from "./AddUser";
-import EditUser from "./EditUser";
 import { createContext } from "react";
 import { useEffect } from "react";
 import Login from "./Login";

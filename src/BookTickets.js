@@ -1,6 +1,5 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { MovieContext } from "./App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "@mui/material";
 
@@ -8,7 +7,7 @@ export default function BookTickets() {
   const { id } = useParams();
   let selected = false,
     bookin = true;
-  const [movies, setMovies] = useContext(MovieContext);
+
   const [theaters, setTheaters] = useState([]);
   const history = useHistory();
   let movie;

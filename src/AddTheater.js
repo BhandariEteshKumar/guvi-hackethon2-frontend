@@ -1,15 +1,13 @@
 import { Button } from "@mui/material";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TextField } from "@mui/material";
-import { MovieContext } from "./App";
 import { useParams } from "react-router-dom";
 export default function AddUser() {
   const { id, name } = useParams();
-  const [users, setUsers] = useContext(MovieContext);
   const [theaterName, setName] = useState(null);
   const [showtime, setShowTime] = useState(null);
-  const [booked, setBooked] = useState([
+  const booked = [
     "Not Booked",
     "Not Booked",
     "Not Booked",
@@ -110,7 +108,7 @@ export default function AddUser() {
     "Not Booked",
     "Not Booked",
     "Not Booked",
-  ]);
+  ];
 
   const history = useHistory();
   return (

@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MovieContext, TheaterContext } from "./App";
 import WeekendIcon from "@mui/icons-material/Weekend";
@@ -6,9 +6,9 @@ import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Seats() {
-  const { id, index } = useParams();
-  const [movies, setMovies] = useContext(MovieContext);
-  const [theaters, setTheaters] = useContext(TheaterContext);
+  const { id } = useParams();
+  const [movies] = useContext(MovieContext);
+  const [theaters] = useContext(TheaterContext);
   let seats = theaters.filter((theater) => +id === theater.movieId);
   seats = seats[0].booked;
   const [total_amount, setAmout] = useState(0);
