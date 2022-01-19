@@ -13,17 +13,20 @@ export default function BookTickets() {
   let movie;
   //loads the data in the theaters
   useEffect(() => {
+    getTheaters();
+  }, []);
+  function getTheaters() {
     fetch("https://guvi-hackethon2.herokuapp.com/theaters")
       .then((data) => data.json())
       .then((theaters) => {
         setTheaters(theaters);
       });
-  }, []);
+  }
   //filtering the data based on id
   movie = theaters.filter(
     (theater) => +id === +theater.movieId || +id === +theater.movieid
   );
-  console.log(theaters, movie);
+  if (movie.length === 0) bookin = false;
   // dispalying the theaters, show timing for the specific movies
   return (
     <div>
@@ -38,6 +41,21 @@ export default function BookTickets() {
                 onClick={() => history.push(`/movies/${id}/seats`)}
               >
                 Book
+              </Button>
+              <Button
+                varient="outlined"
+                onClick={() => {
+                  fetch(
+                    `https://guvi-hackethon2.herokuapp.com/theater/${id}/${book.name}`,
+                    {
+                      method: "DELETE",
+                    }
+                  )
+                    .then((data) => data.json())
+                    .then(() => getTheaters());
+                }}
+              >
+                Delete
               </Button>
             </div>
           ))

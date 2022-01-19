@@ -120,6 +120,7 @@ export default function AddUser() {
           id="title"
           type="text"
           className="col"
+          sx={{ color: "white" }}
           onInput={(e) => setName(e.target.value)}
         />
       </div>
@@ -144,7 +145,7 @@ export default function AddUser() {
               body: JSON.stringify({
                 name: theaterName,
                 showtime: showtime,
-                movieid: id,
+                movieId: +id,
                 booked: booked,
               }),
               headers: {

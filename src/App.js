@@ -34,14 +34,24 @@ export default function App() {
     <div className="app">
       <AppBar position="static" sx={{ backgroundColor: "#203040" }}>
         <Toolbar>
-          <Link to="/home">Home</Link>
-          <Link to="/create-movie">Add Movie</Link>
+          <Link to="/home">
+            <img
+              className="homeimg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7gT2j_3ct4KwFdsbgmnAzSkOp9qs1o_D2eA&usqp=CAU"
+              alt="Poster"
+            ></img>
+          </Link>
+          <img
+            className="homeimg2"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe4jUpwXdtBRHDOqYCdCHVTBRv2TAB58cKyA&usqp=CAU"
+            alt="Poster"
+          ></img>
         </Toolbar>
       </AppBar>
       {/* context api for providing data to children */}
       <MovieContext.Provider value={[movies, setMovies]}>
         <TheaterContext.Provider value={[theaters, setTheaters]}>
-          {/* routing between the pages */}
+          {/* routing between the */}
           <Switch>
             <Route path="/create-movie">
               <AddUser />

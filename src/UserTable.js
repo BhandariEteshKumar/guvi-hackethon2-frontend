@@ -10,61 +10,73 @@ export default function UserTable() {
   const [movies, setMovies] = useContext(MovieContext);
   console.log(name);
   return (
-    <div id="movies">
-      {/* loading the movies */}
-      {movies.map((movie) => (
-        <div className="main card">
-          <img className="card-img-top" src={movie.poster} alt="Poster"></img>
-          <div className="card-body">
-            <h5 className="card-title">{movie.name}</h5>
-            <p className="card-text">{movie.rating}</p>
-            <p className="card-text">{movie.summary}</p>
-            <Button
-              variant="contained"
-              onClick={() => {
-                history.push(`/movies/create/${movie.id}`);
-              }}
-            >
-              Book Tickets
-            </Button>
-            {/* rendering the components which are only for admin user */}
-            {name === "admin" ? (
+    <div>
+      {name === "admin" ? (
+        <Button
+          variant="contained"
+          onClick={() => history.push("/create-movie")}
+        >
+          Add Movie
+        </Button>
+      ) : (
+        ""
+      )}
+      <div id="movies">
+        {/* loading the movies */}
+        {movies.map((movie) => (
+          <div className="main card">
+            <img className="card-img-top" src={movie.poster} alt="Poster"></img>
+            <div className="card-body">
+              <h5 className="card-title">Movie Name:{movie.name}</h5>
+              <p className="card-text">Rating :{movie.rating}</p>
+              <p className="card-text">Summary :{movie.summary}</p>
               <Button
                 variant="contained"
                 onClick={() => {
-                  fetch(`http://localhost:9004/movies/${movie.id}`, {
-                    method: "DELETE",
-                  })
-                    .then((data) => data.json())
-                    .then((movieData) => {
-                      console.log(movieData);
-                      fetch("http://localhost:9004/home")
-                        .then((data) => data.json())
-                        .then((movies) => {
-                          setMovies(movies);
-                        });
-                    });
+                  history.push(`/movies/create/${movie.id}`);
                 }}
               >
-                Remove
+                Book Tickets
               </Button>
-            ) : (
-              ""
-            )}
-            {/* rendering the components which are only for admin user */}
-            {name === "admin" ? (
-              <Button
-                variant="contained"
-                onClick={() => history.push(`/theater/${movie.id}/${name}`)}
-              >
-                Add Theater
-              </Button>
-            ) : (
-              ""
-            )}
+              {/* rendering the components which are only for admin user */}
+              {name === "admin" ? (
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    fetch(`http://localhost:9004/movies/${movie.id}`, {
+                      method: "DELETE",
+                    })
+                      .then((data) => data.json())
+                      .then((movieData) => {
+                        console.log(movieData);
+                        fetch("http://localhost:9004/home")
+                          .then((data) => data.json())
+                          .then((movies) => {
+                            setMovies(movies);
+                          });
+                      });
+                  }}
+                >
+                  Remove
+                </Button>
+              ) : (
+                ""
+              )}
+              {/* rendering the components which are only for admin user */}
+              {name === "admin" ? (
+                <Button
+                  variant="contained"
+                  onClick={() => history.push(`/theater/${movie.id}/${name}`)}
+                >
+                  Add Theater
+                </Button>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

@@ -40,6 +40,17 @@ table {
   width: 90% !important;
 }
 
+.seats {
+  padding: 0.2rem;
+  margin-left: 10%;
+  border-radius: 2rem;
+  width: 80%;
+  opacity: 0.9;
+  color: white;
+  margin-top: 2rem;
+  background-color: black;
+}
+
 th,
 td,
 tr {
@@ -111,4 +122,31 @@ footer button {
 
 button {
   margin: 0.5rem !important;
+}
+
+.theaterdis {
+  border: 2px thin black;
+  margin: 1rem;
+  background-color: black;
+  color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.adduser {
+  color: white !important;
+}
+
+.homeimg {
+  height: 4rem;
+  width: 10rem;
+  opacity: 0.8;
+}
+
+.homeimg2 {
+  height: 4rem;
+  width: 10rem;
+  opacity: 0.8;
+  margin-left: 80%;
+  border-radius: 2rem;
 }

@@ -72,9 +72,9 @@ export default function AddUser() {
             })
               .then((data) => data.json())
               .then(() => {
-                history.push("/");
+                history.push("/home/admin");
               });
-            history.push("/");
+            history.push("/home/admin");
           }}
         >
           Create
